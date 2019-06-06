@@ -1,0 +1,13 @@
+<h1> Nobody leaves! </h1>
+
+{% if submitted %}
+    <b><p>Elf not found :-(</p></b>
+    <ul><b><a href="{% url 'elfs:add'%}">Want to add?</a></b></ul>
+
+{% else %}
+   <form name="search" method="get" action="">
+      {{ form.as_p }}
+   </form>
+{% endif %}
+
+<ul><b><a href="{% url 'elfs:index'%}">Back to basics</a></b></ul>

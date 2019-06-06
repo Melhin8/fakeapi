@@ -1,0 +1,18 @@
+<h1> Increase the number of elves </h1>
+
+{% if submitted %}
+    <b><p>Elf is in the eared card file!</p></b>
+   
+{% else %}
+    <form name="add" method="post" action="">
+    {% csrf_token %}
+    <table>
+       {{ form.as_table }}
+        <tr>
+            <td><input type="submit" value="Save elf"></td>
+       </tr>
+    </table>
+    </form>
+{% endif %}
+
+<ul><b><a href="{% url 'elfs:index'%}">Back to basics</a></b></ul>

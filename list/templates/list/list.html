@@ -1,0 +1,30 @@
+<h1><ul> List of elfs: </ul></h1>
+
+<form name="sort" action="" method="get">
+    {{ form.as_p }}
+</form>
+
+{% if list_of_elfs %}
+
+<style>
+    table {table-layout: fixed}
+</style> 
+
+    {% for elfs in list_of_elfs %}
+
+        <table border="1" width="15%">
+            <tr>
+            <td><b>{{ elfs.name }}</b></td>
+            <td><b>{{ elfs.old }}</b></td>
+            <td><b>{{ elfs.genus }}</b></td>
+            <td><b><a href="{% url 'elfs:detail' slug=elfs.slug%}">link</a></b></td>
+            </tr>
+        </table>
+    
+    {% endfor %}
+   
+{% else %}
+    <p>No elfs are available.</p>
+{% endif %}
+
+<ul><b><a href="{% url 'elfs:index'%}">Back to basics</a></b></ul>
