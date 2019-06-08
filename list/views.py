@@ -13,12 +13,6 @@ from list.forms import AddForm, SearchForm, Sort
 def index(request):
     return render(request, 'list/index.html')
 
-def listt(request):
-    list_of_elfs = Elfs.objects.all()
-    context = {'list_of_elfs':list_of_elfs}
-    return render(request, 'list/list.html', context)
-    #return render(request, 'list/list.html', {'list_of_elfs': Elfs.objects.all()})
-
 def add(request):
     submitted = False
     if request.method == 'POST':
@@ -33,7 +27,7 @@ def add(request):
     return render(request, 'list/add.html', {'form': form, 'submitted': submitted})
 
 def search(request):
-    submitted = False
+    s = False
     if request.method == 'GET':
       form = SearchForm(request.GET)
       if form.is_valid():
@@ -42,13 +36,13 @@ def search(request):
             if find.exists():
                 return HttpResponse(find)
             else:
-                submitted = True
+                s = True
                 #return HttpResponse('No elf')
-                return HttpResponseRedirect('/elfs/search/?submitted=True')
-    else:
+                return HttpResponseRedirect('/elfs/search/?s=True')
+      else:
           form = SearchForm()
 
-    return render(request, 'list/search.html', {'form': form, 'submitted': submitted})
+    return render(request, 'list/search.html', {'form': form, 's': s})
     
 def list(request):
       if request.method == 'GET':
