@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 from django.template.defaultfilters import slugify
 from django.db import models
 import re
-from django.template.defaultfilters import slugify
 from django.utils.encoding import python_2_unicode_compatible
 # Create your models here.
 

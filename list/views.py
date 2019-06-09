@@ -27,7 +27,7 @@ def add(request):
     return render(request, 'list/add.html', {'form': form, 'submitted': submitted})
 
 def search(request):
-    s = False
+    submitted = False
     if request.method == 'GET':
       form = SearchForm(request.GET)
       if form.is_valid():
@@ -36,13 +36,13 @@ def search(request):
             if find.exists():
                 return HttpResponse(find)
             else:
-                s = True
-                #return HttpResponse('No elf')
-                return HttpResponseRedirect('/elfs/search/?s=True')
+                submitted = True
+                return HttpResponse('No elf')
+                #return HttpResponseRedirect('/elfs/search/?submitted=True')
       else:
           form = SearchForm()
 
-    return render(request, 'list/search.html', {'form': form, 's': s})
+    return render(request, 'list/search.html', {'form': form, 'submitted': submitted})
     
 def list(request):
       if request.method == 'GET':
